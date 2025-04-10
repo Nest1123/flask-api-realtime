@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # ให้เว็บภายนอกเรียกใช้ API ได้
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 latest_data = {}  # เก็บข้อมูลล่าสุด
 
