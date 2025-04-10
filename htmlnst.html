@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Realtime Data</title>
+</head>
+<body>
+  <h2>ข้อมูลล่าสุด:</h2>
+  <pre id="output">กำลังโหลด...</pre>
+
+  <script>
+    async function fetchData() {
+      try {
+        const res = await fetch("https://my-flask-api.onrender.com/api/data");
+        const data = await res.json();
+        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById("output").textContent = "ไม่สามารถโหลดข้อมูลได้";
+      }
+    }
+
+    setInterval(fetchData, 2000); // เรียกข้อมูลทุก 2 วินาที
+    fetchData(); // เรียกตอนโหลดหน้า
+  </script>
+</body>
+</html>
